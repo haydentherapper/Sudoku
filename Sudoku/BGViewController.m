@@ -8,6 +8,7 @@
 
 #import "BGViewController.h"
 #import "BGGrid.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BGViewController () {
     UIView* _gridView;
@@ -80,6 +81,7 @@ int initialGrid[9][9] = {
             [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
             // From stack overflow
             [button setBackgroundImage:[self imageWithColor:[UIColor yellowColor]] forState:UIControlStateHighlighted];
+            [button.layer setBorderWidth:2.0f];
             //Store the button in our array
             [_buttonArray addObject:button];
             [_gridView addSubview:button];
