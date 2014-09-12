@@ -74,7 +74,7 @@ int initialGrid[9][9] = {
         for (int j = 1; j < 10; j++) {
             //Create the button
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((j-1)*buttonSize,(i-1)*buttonSize, buttonSize, buttonSize)];
-            button.backgroundColor = [UIColor redColor];
+            button.backgroundColor = [UIColor whiteColor];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[i-1][j-1]] forState:UIControlStateNormal];
             [button setTag:(i*10+j)];
