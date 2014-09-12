@@ -11,13 +11,38 @@
 
 @interface BGViewController () {
     UIView* _gridView;
-    UIButton* _button;
     NSMutableArray* _buttonArray;
 }
 
 @end
 
 @implementation BGViewController
+
+int initialGrid[9][9] = {
+    {7,0,0,4,2,0,0,0,9},
+    {0,0,9,5,0,0,0,0,4},
+    {0,2,0,6,9,0,5,0,0},
+    {6,5,0,0,0,0,4,3,0},
+    {0,8,0,0,0,6,0,0,7},
+    {0,1,0,0,4,5,6,0,0},
+    {0,0,0,8,6,0,0,0,2},
+    {3,4,0,9,0,0,1,0,0},
+    {8,0,0,3,0,2,7,4,0}};
+
+// This function is from Stack Overflow
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 - (void)viewDidLoad
 {
@@ -49,19 +74,18 @@
             //Create the button
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((j-1)*buttonSize,(i-1)*buttonSize, buttonSize, buttonSize)];
             button.backgroundColor = [UIColor redColor];
-            [button setTitle:[NSString stringWithFormat:@"%i%i",i,j] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[i-1][j-1]] forState:UIControlStateNormal];
+            [button setTag:(i*10+j)];
+            [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
+            // From stack overflow
+            [button setBackgroundImage:[self imageWithColor:[UIColor yellowColor]] forState:UIControlStateHighlighted];
             //Store the button in our array
             [_buttonArray addObject:button];
             [_gridView addSubview:button];
+            
         }
     }
-    
-    // create target for button
-    [_button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
-    [_button setTitle:@"Hit me!" forState:UIControlStateNormal];
-    _button.titleLabel.font = [UIFont systemFontOfSize: 12];
-    [_button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    // Create Grid view
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +96,8 @@
 
 - (void)buttonPressed: (id)sender
 {
-    NSLog(@"You touched the button!");
+    UIButton *curButton = (UIButton *) sender;
+    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
 }
 
 @end
