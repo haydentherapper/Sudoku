@@ -76,7 +76,9 @@ int initialGrid[9][9] = {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((j-1)*buttonSize,(i-1)*buttonSize, buttonSize, buttonSize)];
             button.backgroundColor = [UIColor whiteColor];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[i-1][j-1]] forState:UIControlStateNormal];
+            if (initialGrid[i-1][j-1] != 0) {
+              [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[i-1][j-1]] forState:UIControlStateNormal];
+            }
             [button setTag:(i*10+j)];
             [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
             // From stack overflow
