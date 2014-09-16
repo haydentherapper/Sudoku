@@ -1,14 +1,14 @@
 //
-//  BGGrid.m
+//  BGGridView.m
 //  Sudoku
 //
 //  Created by Sarah Gilkinson on 9/11/14.
 //  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
 //
 
-#import "BGGrid.h"
+#import "BGGridView.h"
 
-@implementation BGGrid
+@implementation BGGridView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -17,6 +17,12 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)buttonPressed: (id)sender
+{
+    UIButton *curButton = (UIButton *) sender;
+    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
 }
 
 /*

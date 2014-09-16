@@ -21,7 +21,7 @@
 		0A8C222919C2470500483F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8C220B19C2470500483F92 /* UIKit.framework */; };
 		0A8C223119C2470500483F92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C222F19C2470500483F92 /* InfoPlist.strings */; };
 		0A8C223319C2470500483F92 /* SudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223219C2470500483F92 /* SudokuTests.m */; };
-		0A8C223E19C2482000483F92 /* BGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223D19C2482000483F92 /* BGGrid.m */; };
+		0A8C223E19C2482000483F92 /* BGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223D19C2482000483F92 /* BGGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		0A8C222E19C2470500483F92 /* SudokuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SudokuTests-Info.plist"; sourceTree = "<group>"; };
 		0A8C223019C2470500483F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0A8C223219C2470500483F92 /* SudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SudokuTests.m; sourceTree = "<group>"; };
-		0A8C223C19C2482000483F92 /* BGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGGrid.h; sourceTree = "<group>"; };
-		0A8C223D19C2482000483F92 /* BGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGGrid.m; sourceTree = "<group>"; };
+		0A8C223C19C2482000483F92 /* BGGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGGridView.h; sourceTree = "<group>"; };
+		0A8C223D19C2482000483F92 /* BGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGGridView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 				0A8C221919C2470500483F92 /* Main.storyboard */,
 				0A8C221C19C2470500483F92 /* BGViewController.h */,
 				0A8C221D19C2470500483F92 /* BGViewController.m */,
-				0A8C223C19C2482000483F92 /* BGGrid.h */,
-				0A8C223D19C2482000483F92 /* BGGrid.m */,
+				0A8C223C19C2482000483F92 /* BGGridView.h */,
+				0A8C223D19C2482000483F92 /* BGGridView.m */,
 				0A8C221F19C2470500483F92 /* Images.xcassets */,
 				0A8C220E19C2470500483F92 /* Supporting Files */,
 			);
@@ -257,7 +257,7 @@
 			files = (
 				0A8C221E19C2470500483F92 /* BGViewController.m in Sources */,
 				0A8C221419C2470500483F92 /* main.m in Sources */,
-				0A8C223E19C2482000483F92 /* BGGrid.m in Sources */,
+				0A8C223E19C2482000483F92 /* BGGridView.m in Sources */,
 				0A8C221819C2470500483F92 /* BGAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +465,7 @@
 				0A8C223819C2470500483F92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A8C223919C2470500483F92 /* Build configuration list for PBXNativeTarget "SudokuTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +474,7 @@
 				0A8C223B19C2470500483F92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

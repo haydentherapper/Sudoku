@@ -1,5 +1,5 @@
 //
-//  BGGrid.h
+//  BGGridView.h
 //  Sudoku
 //
 //  Created by Sarah Gilkinson on 9/11/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BGGrid : UIView
+@interface BGGridView : UIView
 
 @end

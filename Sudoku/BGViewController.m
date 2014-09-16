@@ -7,7 +7,7 @@
 //
 
 #import "BGViewController.h"
-#import "BGGrid.h"
+#import "BGGridView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BGViewController () {
@@ -62,7 +62,7 @@ int initialGrid[9][9] = {
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
     // create grid view
-    _gridView = [[BGGrid alloc] initWithFrame:gridFrame];
+    _gridView = [[BGGridView alloc] initWithFrame:gridFrame];
     _gridView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_gridView];
     
@@ -91,7 +91,7 @@ int initialGrid[9][9] = {
             
             // Tag of 21 represents second row, first column
             [button setTag:(i*10+j)];
-            [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:_gridView action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
             
             // From stack overflow
             [button setBackgroundImage:[self imageWithColor:[UIColor yellowColor]] forState:UIControlStateHighlighted];
@@ -109,12 +109,6 @@ int initialGrid[9][9] = {
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)buttonPressed: (id)sender
-{
-    UIButton *curButton = (UIButton *) sender;
-    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
 }
 
 @end
