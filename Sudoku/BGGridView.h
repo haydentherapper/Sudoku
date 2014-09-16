@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BGGridViewDelegate
-- (void)buttonWasTappedInChild:(BGViewController *)childViewController;
+@protocol BGGridViewDelegate <NSObject>
+@required
+- (void)buttonWasTapped:(id)sender;
 @end
 
 @interface BGGridView : UIView
+
+- (void)makeNewGridViewOfSize:(CGFloat)size withGrid:(int[9][9])initialGrid;
 
 @property (weak, nonatomic) id <BGGridViewDelegate> delegate;
 

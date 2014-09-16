@@ -10,8 +10,8 @@
 #import "BGGridView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface BGViewController () {
-    UIView* _gridView;
+@interface BGViewController() <BGGridViewDelegate> {
+    BGGridView* _gridView;
 }
 
 @end
@@ -37,7 +37,7 @@ int initialGrid[9][9] = {
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // create grid frame
+    // Create grid frame
     CGRect frame = self.view.frame;
     CGFloat x = CGRectGetWidth(frame)*.1;
     CGFloat y = CGRectGetHeight(frame)*.1;
@@ -45,23 +45,25 @@ int initialGrid[9][9] = {
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
-    // create grid view
+    // Create grid view
     _gridView = [[BGGridView alloc] initWithFrame:gridFrame];
-    [_gridView makeNewGridView];
+    // Assign gridView's delegate to be the controller
+    _gridView.delegate = self;
+    // Populate the grid with the initial grid
+    [_gridView makeNewGridViewOfSize:size withGrid:initialGrid];
     [self.view addSubview:_gridView];
-    
+}
+
+- (void)buttonWasTapped:(id)sender
+{
+    UIButton *curButton = (UIButton *) sender;
+    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)buttonPressed: (id)sender
-{
-    UIButton *curButton = (UIButton *) sender;
-    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
 }
 
 @end

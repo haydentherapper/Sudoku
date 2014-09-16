@@ -8,9 +8,13 @@
 
 #import "BGGridView.h"
 
-@implementation BGGridView {
+@interface BGGridView () {
     NSMutableArray* _buttonArray;
 }
+
+@end
+
+@implementation BGGridView // Can this just be an implementation or does it need to be both?
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,7 +25,7 @@
     return self;
 }
 
-- (void) makeNewGridView: (CGFloat) size: (int[9][9]) initialGrid
+- (void)makeNewGridViewOfSize:(CGFloat)size withGrid:(int[9][9])initialGrid
 {
     self.backgroundColor = [UIColor blackColor];
     
@@ -61,6 +65,13 @@
             [self addSubview:button];
             
         }
+    }
+}
+
+- (IBAction)buttonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(buttonWasTapped:)]) {
+        [self.delegate buttonWasTapped:sender];
     }
 }
 
