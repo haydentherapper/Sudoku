@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BGGridViewDelegate
+- (void)buttonWasTappedInChild:(BGViewController *)childViewController;
+@end
+
 @interface BGGridView : UIView
+
+@property (weak, nonatomic) id <BGGridViewDelegate> delegate;
 
 @end
