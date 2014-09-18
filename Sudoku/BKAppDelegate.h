@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BGAppDelegate : UIResponder <UIApplicationDelegate>
+@interface BKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

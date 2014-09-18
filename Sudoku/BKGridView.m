@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
 //
 
-#import "BGGridView.h"
+#import "BKGridView.h"
 
-@interface BGGridView () {
+@interface BKGridView () {
     NSMutableArray* _buttonArray;
 }
 
 @end
 
-@implementation BGGridView
+@implementation BKGridView
 
 - (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size withGrid:(int[9][9])initialGrid
 {

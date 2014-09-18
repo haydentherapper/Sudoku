@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BGGridViewDelegate <NSObject>
+@protocol BKGridViewDelegate <NSObject>
 @required
 - (void)buttonWasTapped:(id)sender;
 @end
 
-@interface BGGridView : UIView
+@interface BKGridView : UIView
 
 - (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size withGrid:(int[9][9])initialGrid;
 
-@property (weak, nonatomic) id <BGGridViewDelegate> delegate;
+@property (weak, nonatomic) id <BKGridViewDelegate> delegate;
 
 @end

@@ -12,16 +12,17 @@
 		0A8C220C19C2470500483F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8C220B19C2470500483F92 /* UIKit.framework */; };
 		0A8C221219C2470500483F92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C221019C2470500483F92 /* InfoPlist.strings */; };
 		0A8C221419C2470500483F92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C221319C2470500483F92 /* main.m */; };
-		0A8C221819C2470500483F92 /* BGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C221719C2470500483F92 /* BGAppDelegate.m */; };
+		0A8C221819C2470500483F92 /* BKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C221719C2470500483F92 /* BKAppDelegate.m */; };
 		0A8C221B19C2470500483F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C221919C2470500483F92 /* Main.storyboard */; };
-		0A8C221E19C2470500483F92 /* BGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C221D19C2470500483F92 /* BGViewController.m */; };
+		0A8C221E19C2470500483F92 /* BKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C221D19C2470500483F92 /* BKViewController.m */; };
 		0A8C222019C2470500483F92 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C221F19C2470500483F92 /* Images.xcassets */; };
 		0A8C222719C2470500483F92 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8C222619C2470500483F92 /* XCTest.framework */; };
 		0A8C222819C2470500483F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8C220719C2470500483F92 /* Foundation.framework */; };
 		0A8C222919C2470500483F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8C220B19C2470500483F92 /* UIKit.framework */; };
 		0A8C223119C2470500483F92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C222F19C2470500483F92 /* InfoPlist.strings */; };
 		0A8C223319C2470500483F92 /* SudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223219C2470500483F92 /* SudokuTests.m */; };
-		0A8C223E19C2482000483F92 /* BGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223D19C2482000483F92 /* BGGridView.m */; };
+		0A8C223E19C2482000483F92 /* BKGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C223D19C2482000483F92 /* BKGridView.m */; };
+		5D257C0619CB84B700E47398 /* BKGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D257C0519CB84B700E47398 /* BKGridModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,19 +44,21 @@
 		0A8C221119C2470500483F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0A8C221319C2470500483F92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A8C221519C2470500483F92 /* Sudoku-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sudoku-Prefix.pch"; sourceTree = "<group>"; };
-		0A8C221619C2470500483F92 /* BGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGAppDelegate.h; sourceTree = "<group>"; };
-		0A8C221719C2470500483F92 /* BGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGAppDelegate.m; sourceTree = "<group>"; };
+		0A8C221619C2470500483F92 /* BKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKAppDelegate.h; sourceTree = "<group>"; };
+		0A8C221719C2470500483F92 /* BKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKAppDelegate.m; sourceTree = "<group>"; };
 		0A8C221A19C2470500483F92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A8C221C19C2470500483F92 /* BGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGViewController.h; sourceTree = "<group>"; };
-		0A8C221D19C2470500483F92 /* BGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BGViewController.m; sourceTree = "<group>"; };
+		0A8C221C19C2470500483F92 /* BKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKViewController.h; sourceTree = "<group>"; };
+		0A8C221D19C2470500483F92 /* BKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKViewController.m; sourceTree = "<group>"; };
 		0A8C221F19C2470500483F92 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0A8C222519C2470500483F92 /* SudokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8C222619C2470500483F92 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0A8C222E19C2470500483F92 /* SudokuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SudokuTests-Info.plist"; sourceTree = "<group>"; };
 		0A8C223019C2470500483F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0A8C223219C2470500483F92 /* SudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SudokuTests.m; sourceTree = "<group>"; };
-		0A8C223C19C2482000483F92 /* BGGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGGridView.h; sourceTree = "<group>"; };
-		0A8C223D19C2482000483F92 /* BGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGGridView.m; sourceTree = "<group>"; };
+		0A8C223C19C2482000483F92 /* BKGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKGridView.h; sourceTree = "<group>"; };
+		0A8C223D19C2482000483F92 /* BKGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKGridView.m; sourceTree = "<group>"; };
+		5D257C0419CB84B700E47398 /* BKGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKGridModel.h; sourceTree = "<group>"; };
+		5D257C0519CB84B700E47398 /* BKGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKGridModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,13 +118,15 @@
 		0A8C220D19C2470500483F92 /* Sudoku */ = {
 			isa = PBXGroup;
 			children = (
-				0A8C221619C2470500483F92 /* BGAppDelegate.h */,
-				0A8C221719C2470500483F92 /* BGAppDelegate.m */,
+				0A8C221619C2470500483F92 /* BKAppDelegate.h */,
+				0A8C221719C2470500483F92 /* BKAppDelegate.m */,
 				0A8C221919C2470500483F92 /* Main.storyboard */,
-				0A8C221C19C2470500483F92 /* BGViewController.h */,
-				0A8C221D19C2470500483F92 /* BGViewController.m */,
-				0A8C223C19C2482000483F92 /* BGGridView.h */,
-				0A8C223D19C2482000483F92 /* BGGridView.m */,
+				0A8C221C19C2470500483F92 /* BKViewController.h */,
+				0A8C221D19C2470500483F92 /* BKViewController.m */,
+				5D257C0419CB84B700E47398 /* BKGridModel.h */,
+				5D257C0519CB84B700E47398 /* BKGridModel.m */,
+				0A8C223C19C2482000483F92 /* BKGridView.h */,
+				0A8C223D19C2482000483F92 /* BKGridView.m */,
 				0A8C221F19C2470500483F92 /* Images.xcassets */,
 				0A8C220E19C2470500483F92 /* Supporting Files */,
 			);
@@ -255,10 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8C221E19C2470500483F92 /* BGViewController.m in Sources */,
+				0A8C221E19C2470500483F92 /* BKViewController.m in Sources */,
 				0A8C221419C2470500483F92 /* main.m in Sources */,
-				0A8C223E19C2482000483F92 /* BGGridView.m in Sources */,
-				0A8C221819C2470500483F92 /* BGAppDelegate.m in Sources */,
+				0A8C223E19C2482000483F92 /* BKGridView.m in Sources */,
+				5D257C0619CB84B700E47398 /* BKGridModel.m in Sources */,
+				0A8C221819C2470500483F92 /* BKAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

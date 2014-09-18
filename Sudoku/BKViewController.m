@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
 //
 
-#import "BGViewController.h"
-#import "BGGridView.h"
+#import "BKViewController.h"
+#import "BKGridView.h"
 
-@interface BGViewController() <BGGridViewDelegate> {
-    BGGridView* _gridView;
+@interface BKViewController() <BKGridViewDelegate> {
+    BKGridView* _gridView;
 }
 
 @end
 
-@implementation BGViewController
+@implementation BKViewController
 
 // Initial grid
 // Will eventually be replaced by grid generation
@@ -45,7 +45,7 @@ int initialGrid[9][9] = {
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
     // Create grid view and populates
-    _gridView = [[BGGridView alloc] initWithFrame:gridFrame ofSize:size withGrid:initialGrid];
+    _gridView = [[BKGridView alloc] initWithFrame:gridFrame ofSize:size withGrid:initialGrid];
     
     // Assign gridView's delegate to be the controller
     _gridView.delegate = self;

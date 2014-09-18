@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
 //
 
-#import "BGAppDelegate.h"
+#import "BKAppDelegate.h"
 
-@implementation BGAppDelegate
+@implementation BKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
