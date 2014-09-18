@@ -51,6 +51,7 @@ int initialGrid[9][9] = {
     _gridView.delegate = self;
 
     [self.view addSubview:_gridView];
+    
 }
 
 - (void)buttonWasTapped:(id)sender
