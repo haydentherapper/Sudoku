@@ -8,7 +8,6 @@
 
 #import "BGViewController.h"
 #import "BGGridView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface BGViewController() <BGGridViewDelegate> {
     BGGridView* _gridView;
@@ -45,12 +44,12 @@ int initialGrid[9][9] = {
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
-    // Create grid view
-    _gridView = [[BGGridView alloc] initWithFrame:gridFrame];
+    // Create grid view and populates
+    _gridView = [[BGGridView alloc] initWithFrame:gridFrame ofSize:size withGrid:initialGrid];
+    
     // Assign gridView's delegate to be the controller
     _gridView.delegate = self;
-    // Populate the grid with the initial grid
-    [_gridView makeNewGridViewOfSize:size withGrid:initialGrid];
+
     [self.view addSubview:_gridView];
 }
 
@@ -63,7 +62,6 @@ int initialGrid[9][9] = {
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

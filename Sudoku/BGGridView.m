@@ -14,58 +14,57 @@
 
 @end
 
-@implementation BGGridView // Can this just be an implementation or does it need to be both?
+@implementation BGGridView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size withGrid:(int[9][9])initialGrid
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)makeNewGridViewOfSize:(CGFloat)size withGrid:(int[9][9])initialGrid
-{
-    self.backgroundColor = [UIColor blackColor];
-    
-    // Leaving 0.01 each for four lines separating blocks
-    CGFloat buttonSize = (size*0.96)/9.0;
-    
-    // Array to hold 81 buttons
-    _buttonArray = [[NSMutableArray alloc] init];
-    
-    // create button
-    for (int i = 1; i < 10; i++) {
-        for (int j = 1; j < 10; j++) {
-            //Create the button
-            // Offset of 0.01*size for each major line.
-            // First is at begining, additional after each 3 (1+(j-1)/3)
-            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(((j-1)*buttonSize+(1+(j-1)/3)*size*0.01),(i-1)*buttonSize + (1+(i-1)/3)*size*0.01, buttonSize, buttonSize)];
-            
-            button.backgroundColor = [UIColor whiteColor];
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
-            
-            // Only show symbol if non-zero
-            if (initialGrid[i-1][j-1] != 0) {
-                [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[i-1][j-1]] forState:UIControlStateNormal];
+        self.backgroundColor = [UIColor blackColor];
+        
+        // Leaving 0.01 each for four lines separating blocks
+        CGFloat buttonSize = (size*0.96)/9.0;
+        
+        // Array to hold 81 buttons
+        _buttonArray = [[NSMutableArray alloc] init];
+        
+        // create button
+        for (int row = 1; row < 10; row++) {
+            for (int col = 1; col < 10; col++) {
+                //Create the button
+                // Offset of 0.01*size for each major line.
+                // First is at begining, additional after each 3 (1+(j-1)/3)
+                CGFloat x = (col-1)*buttonSize+(1+(col-1)/3)*size*0.01;
+                CGFloat y = (row-1)*buttonSize + (1+(row-1)/3)*size*0.01;
+                UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x,y,buttonSize,buttonSize)];
+                
+                button.backgroundColor = [UIColor whiteColor];
+                [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
+                
+                // Only show symbol if non-zero
+                if (initialGrid[row-1][col-1] != 0) {
+                    [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[row-1][col-1]]
+                            forState:UIControlStateNormal];
+                }
+                
+                // Tag of 21 represents second row, first column
+                [button setTag:(row*10+col)];
+                [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
+                
+                // From Stack Overflow
+                [button setBackgroundImage:[self imageWithColor:[UIColor yellowColor]]
+                                  forState:UIControlStateHighlighted];
+                [button.layer setBorderWidth:2.0f];
+                
+                //Store the button in our array
+                [_buttonArray addObject:button];
+                [self addSubview:button];
+                
             }
-            
-            // Tag of 21 represents second row, first column
-            [button setTag:(i*10+j)];
-            [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
-            
-            // From stack overflow
-            [button setBackgroundImage:[self imageWithColor:[UIColor yellowColor]] forState:UIControlStateHighlighted];
-            [button.layer setBorderWidth:2.0f];
-            
-            //Store the button in our array
-            [_buttonArray addObject:button];
-            [self addSubview:button];
-            
         }
     }
+    return self;
 }
 
 - (IBAction)buttonPressed:(id)sender
@@ -89,14 +88,5 @@
     
     return image;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
