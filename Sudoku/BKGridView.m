@@ -16,7 +16,7 @@
 
 @implementation BKGridView
 
-- (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size withGrid:(int[9][9])initialGrid
+- (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -42,12 +42,6 @@
                 [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
                 
-                // Only show symbol if non-zero
-                if (initialGrid[row-1][col-1] != 0) {
-                    [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[row-1][col-1]]
-                            forState:UIControlStateNormal];
-                }
-                
                 // Tag of 21 represents second row, first column
                 [button setTag:(row*10+col)];
                 [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
@@ -65,6 +59,16 @@
         }
     }
     return self;
+}
+
+- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col
+{
+    // Only show symbol if non-zero
+    if (value != 0) {
+        [[_buttonArray objectAtIndex:9*row + col]
+                setTitle:[NSString stringWithFormat:@"%i",value]
+                forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)buttonPressed:(id)sender

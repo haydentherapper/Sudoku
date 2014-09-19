@@ -8,27 +8,16 @@
 
 #import "BKViewController.h"
 #import "BKGridView.h"
+#import "BKGridModel.h"
 
 @interface BKViewController() <BKGridViewDelegate> {
     BKGridView* _gridView;
+    BKGridModel* _gridModel;
 }
 
 @end
 
 @implementation BKViewController
-
-// Initial grid
-// Will eventually be replaced by grid generation
-int initialGrid[9][9] = {
-    {7,0,0,4,2,0,0,0,9},
-    {0,0,9,5,0,0,0,0,4},
-    {0,2,0,6,9,0,5,0,0},
-    {6,5,0,0,0,0,4,3,0},
-    {0,8,0,0,0,6,0,0,7},
-    {0,1,0,0,4,5,6,0,0},
-    {0,0,0,8,6,0,0,0,2},
-    {3,4,0,9,0,0,1,0,0},
-    {8,0,0,3,0,2,7,4,0}};
 
 - (void)viewDidLoad
 {
@@ -44,8 +33,18 @@ int initialGrid[9][9] = {
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
+    _gridModel = [BKGridModel alloc];
+    [_gridModel initializeGrid];
+    
     // Create grid view and populates
-    _gridView = [[BKGridView alloc] initWithFrame:gridFrame ofSize:size withGrid:initialGrid];
+    _gridView = [[BKGridView alloc] initWithFrame:gridFrame ofSize:size];
+    
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            int value = [_gridModel getValueAtRow:row atCol:col];
+            [_gridView setButtonValue:value atRow:row atCol:col];
+        }
+    }
     
     // Assign gridView's delegate to be the controller
     _gridView.delegate = self;
