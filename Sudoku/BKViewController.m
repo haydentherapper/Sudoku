@@ -9,10 +9,12 @@
 #import "BKViewController.h"
 #import "BKGridView.h"
 #import "BKGridModel.h"
+#import "BKNumPadView.h"
 
 @interface BKViewController() <BKGridViewDelegate> {
     BKGridView* _gridView;
     BKGridModel* _gridModel;
+    BKNumPadView* _numPadView;
 }
 
 @end
@@ -50,6 +52,12 @@
     _gridView.delegate = self;
 
     [self.view addSubview:_gridView];
+    
+    CGRect numPadFrame = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 5) + size, size, size * .15);
+    _numPadView = [[BKNumPadView alloc] initWithFrame:numPadFrame];
+    
+    [self.view addSubview:_numPadView];
+    
     
 }
 
