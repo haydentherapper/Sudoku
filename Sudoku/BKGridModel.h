@@ -14,5 +14,6 @@
 
 - (int) getValueAtRow:(int)row atCol:(int)col;
 - (BOOL) setValue:(int)value atRow:(int)row atCol:(int)col;
+- (BOOL) isFull;
 
 @end

@@ -75,7 +75,18 @@ int initialGrid[9][9] = {
         }
     }
     return YES;
-    
+}
+
+- (BOOL) isFull
+{
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            if (_gridCells[r][c] == 0) {
+                return NO;
+            }
+        }
+    }
+    return YES;
 }
 
 

@@ -72,6 +72,21 @@
     BOOL wasValidMove = [_gridModel setValue:currentNum atRow:row atCol:col];
     if (wasValidMove) {
         [_gridView setButtonValue:currentNum atRow: row-1 atCol:col-1 canSelect:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid move"
+                                                        message:@"Move was illogical"
+                                                        delegate:nil
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil];
+        [alert show];
+    }
+    if ([_gridModel isFull]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"#Winning"
+                                                        message:@"You won!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
