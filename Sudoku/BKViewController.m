@@ -88,8 +88,8 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+        [_gridView makeAllCellsUnselectable];
     }
-    [_gridView makeAllCellsUnselectable];
 }
 
 - (void)didReceiveMemoryWarning
