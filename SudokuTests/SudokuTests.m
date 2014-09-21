@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "BKGridModel.h"
 
-@interface SudokuTests : XCTestCase
+@interface SudokuTests : XCTestCase {
+    BKGridModel* _gridModel;
+}
 
 @end
 
@@ -17,7 +20,9 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _gridModel = [BKGridModel alloc];
+    [_gridModel initializeGrid];
+
 }
 
 - (void)tearDown
@@ -28,7 +33,16 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue([_gridModel getValueAtRow:0 atCol:0] == 7, @"Checking value at r1:c1");
+    XCTAssertTrue([_gridModel getValueAtRow:0 atCol:1] == 0, @"Checking value at r1:c2");
+    
+    XCTAssertTrue([_gridModel setValue:1 atRow:7 atCol:3], @"Setting 1 at r7:c3, valid move");
+    XCTAssertEqual([_gridModel setValue:1 atRow:7 atCol:3], NO, @"Checking if we can't replace a value");
+    XCTAssertTrue([_gridModel getValueAtRow:6 atCol:2] == 1, @"Checking value at r7:c3");
+    
+    XCTAssertEqual([_gridModel setValue:4 atRow:7 atCol:1], NO, @"Checking logic within 3x3");
+    XCTAssertEqual([_gridModel setValue:1 atRow:7 atCol:1], NO, @"Checking logic within row");
+    XCTAssertEqual([_gridModel setValue:7 atRow:7 atCol:1], NO, @"Checking logic within col");
 }
 
 @end
