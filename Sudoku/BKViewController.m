@@ -70,6 +70,9 @@
     int row = curButton.tag / 10;
     int col = curButton.tag % 10;
     BOOL wasValidMove = [_gridModel setValue:currentNum atRow:row atCol:col];
+    if (wasValidMove) {
+        [_gridView setButtonValue:currentNum atRow: row-1 atCol:col-1 canSelect:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

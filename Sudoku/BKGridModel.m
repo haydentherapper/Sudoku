@@ -45,10 +45,38 @@ int initialGrid[9][9] = {
 
 - (BOOL) setValue:(int)value atRow:(int)row atCol:(int)col
 {
-    _gridCells[row][col] = value;
+    BOOL wasValid = [self checkLogicForValue: value atRow:row andCol: col];
+    if (wasValid){
+        _gridCells[row-1][col-1] = value;
+    }
+    return wasValid;
 }
 
-
+- (BOOL) checkLogicForValue:(int) value atRow:(int) row andCol:(int) col
+{
+    for (int i = 0; i < 9; ++i) {
+        //check row
+        if (_gridCells[row-1][i] == value) {
+            return NO;
+        }
+        //check column
+        if (_gridCells[i][col-1] == value) {
+            return NO;
+        }
+    }
+    //check 3x3 subgrid
+    int rowIndex = ((row-1)/3)*3;
+    int colIndex = ((col-1)/3)*3;
+    for (int r = rowIndex; r < rowIndex + 3; ++r){
+        for (int c = colIndex; c < colIndex + 3; ++c){
+            if (_gridCells[r][c] == value){
+                return NO;
+            }
+        }
+    }
+    return YES;
+    
+}
 
 
 @end
