@@ -44,7 +44,9 @@
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) {
             int value = [_gridModel getValueAtRow:row atCol:col];
-            [_gridView setButtonValue:value atRow:row atCol:col];
+            if (value != 0) {
+                [_gridView setButtonValue:value atRow:row atCol:col canSelect:NO];
+            }
         }
     }
     
@@ -64,7 +66,10 @@
 - (void)buttonWasTapped:(id)sender
 {
     UIButton *curButton = (UIButton *) sender;
-    NSLog(@"You touched the button with row %i and column %i", (curButton.tag / 10), (curButton.tag % 10));
+    NSUInteger currentNum = _numPadView.getCurrentNumber;
+    int row = curButton.tag / 10;
+    int col = curButton.tag % 10;
+    BOOL wasValidMove = [_gridModel setValue:currentNum atRow:row atCol:col];
 }
 
 - (void)didReceiveMemoryWarning

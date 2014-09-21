@@ -61,14 +61,13 @@
     return self;
 }
 
-- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col
+- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)original
 {
-    // Only show symbol if non-zero
-    if (value != 0) {
-        [[_buttonArray objectAtIndex:9*row + col]
-                setTitle:[NSString stringWithFormat:@"%i",value]
-                forState:UIControlStateNormal];
-    }
+    UIButton* button = [_buttonArray objectAtIndex:9*row + col];
+    [button setTitle:[NSString stringWithFormat:@"%i",value]
+            forState:UIControlStateNormal];
+    button.userInteractionEnabled = original;
+    
 }
 
 - (IBAction)buttonPressed:(id)sender

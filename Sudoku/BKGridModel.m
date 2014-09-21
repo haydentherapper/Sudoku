@@ -43,10 +43,11 @@ int initialGrid[9][9] = {
     return _gridCells[row][col];
 }
 
-- (void) setValue:(int)value atRow:(int)row atCol:(int)col
+- (BOOL) setValue:(int)value atRow:(int)row atCol:(int)col
 {
     _gridCells[row][col] = value;
 }
+
 
 
 
