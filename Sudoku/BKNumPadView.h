@@ -10,4 +10,6 @@
 
 @interface BKNumPadView : UIView
 
+- (int) getCurrentNumber;
+
 @end
