@@ -80,6 +80,7 @@
                                                         otherButtonTitles:nil];
         [alert show];
     }
+    // We have won the game!
     if ([_gridModel isFull]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"#Winning"
                                                         message:@"You won!"
@@ -88,6 +89,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+    [_gridView makeAllCellsUnselectable];
 }
 
 - (void)didReceiveMemoryWarning

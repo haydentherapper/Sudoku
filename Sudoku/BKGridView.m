@@ -77,6 +77,13 @@
     }
 }
 
+-(void)makeAllCellsUnselectable
+{
+    for (UIButton* button in _buttonArray) {
+        button.userInteractionEnabled = NO;
+    }
+}
+
 // This function is from Stack Overflow
 - (UIImage *)imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

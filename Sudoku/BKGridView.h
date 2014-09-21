@@ -17,6 +17,7 @@
 
 - (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size;
 - (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)original;
+- (void)makeAllCellsUnselectable;
 
 @property (weak, nonatomic) id <BKGridViewDelegate> delegate;
 
