@@ -2,8 +2,8 @@
 //  BGViewController.m
 //  Sudoku
 //
-//  Created by Sarah Gilkinson on 9/11/14.
-//  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
+//  Created on 9/11/14.
+//  Copyright (c) 2014 Blauzvern Kutsko. All rights reserved.
 //
 
 #import "BKViewController.h"
@@ -55,6 +55,7 @@
 
     [self.view addSubview:_gridView];
     
+    // Constants allow us to shape the numpad
     CGRect numPadFrame = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 5) + size, size, size * .15);
     _numPadView = [[BKNumPadView alloc] initWithFrame:numPadFrame];
     
@@ -67,11 +68,12 @@
 {
     UIButton *curButton = (UIButton *) sender;
     NSUInteger currentNum = _numPadView.getCurrentNumber;
-    int row = curButton.tag / 10;
-    int col = curButton.tag % 10;
+    // Tag is 21 = 2nd row, 1st column (Subtract 1 for array[r][c])
+    int row = curButton.tag / 10 - 1;
+    int col = curButton.tag % 10 - 1;
     BOOL wasValidMove = [_gridModel setValue:currentNum atRow:row atCol:col];
     if (wasValidMove) {
-        [_gridView setButtonValue:currentNum atRow: row-1 atCol:col-1 canSelect:YES];
+        [_gridView setButtonValue:currentNum atRow:row atCol:col canSelect:YES];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid move"
                                                         message:@"Move was illogical"
@@ -88,6 +90,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+        // Lock all cells
         [_gridView makeAllCellsUnselectable];
     }
 }

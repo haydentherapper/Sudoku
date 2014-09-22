@@ -2,8 +2,8 @@
 //  BGGridView.m
 //  Sudoku
 //
-//  Created by Sarah Gilkinson on 9/11/14.
-//  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
+//  Created on 9/11/14.
+//  Copyright (c) 2014 Blauzvern Kutsko. All rights reserved.
 //
 
 #import "BKGridView.h"
@@ -66,7 +66,7 @@
     UIButton* button = [_buttonArray objectAtIndex:9*row + col];
     [button setTitle:[NSString stringWithFormat:@"%i",value]
             forState:UIControlStateNormal];
-    button.userInteractionEnabled = original;
+    button.userInteractionEnabled = original; // Locks cell if original
     
 }
 
