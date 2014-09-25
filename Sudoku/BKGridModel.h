@@ -10,6 +10,7 @@
 
 @interface BKGridModel : NSObject
 
+- (void)parseGrids;
 - (void)initializeGrid;
 
 - (int)getValueAtRow:(int)row atCol:(int)col;

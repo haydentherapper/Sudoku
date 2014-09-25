@@ -36,6 +36,7 @@
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
     _gridModel = [BKGridModel alloc];
+    [_gridModel parseGrids];
     [_gridModel initializeGrid];
     
     // Create grid view and populates
