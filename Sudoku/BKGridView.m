@@ -2,21 +2,21 @@
 //  BGGridView.m
 //  Sudoku
 //
-//  Created by Sarah Gilkinson on 9/11/14.
-//  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
+//  Created on 9/11/14.
+//  Copyright (c) 2014 Blauzvern Kutsko. All rights reserved.
 //
 
-#import "BGGridView.h"
+#import "BKGridView.h"
 
-@interface BGGridView () {
+@interface BKGridView () {
     NSMutableArray* _buttonArray;
 }
 
 @end
 
-@implementation BGGridView
+@implementation BKGridView
 
-- (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size withGrid:(int[9][9])initialGrid
+- (id)initWithFrame:(CGRect)frame ofSize:(CGFloat)size
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -42,12 +42,6 @@
                 [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
                 
-                // Only show symbol if non-zero
-                if (initialGrid[row-1][col-1] != 0) {
-                    [button setTitle:[NSString stringWithFormat:@"%i",initialGrid[row-1][col-1]]
-                            forState:UIControlStateNormal];
-                }
-                
                 // Tag of 21 represents second row, first column
                 [button setTag:(row*10+col)];
                 [button addTarget:self action:@selector(buttonPressed:)forControlEvents:UIControlEventTouchUpInside];
@@ -67,10 +61,26 @@
     return self;
 }
 
+- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)original
+{
+    UIButton* button = [_buttonArray objectAtIndex:9*row + col];
+    [button setTitle:[NSString stringWithFormat:@"%i",value]
+            forState:UIControlStateNormal];
+    button.userInteractionEnabled = original; // Locks cell if original
+    
+}
+
 - (IBAction)buttonPressed:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(buttonWasTapped:)]) {
         [self.delegate buttonWasTapped:sender];
+    }
+}
+
+-(void)makeAllCellsUnselectable
+{
+    for (UIButton* button in _buttonArray) {
+        button.userInteractionEnabled = NO;
     }
 }
 

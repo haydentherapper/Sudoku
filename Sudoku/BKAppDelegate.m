@@ -2,13 +2,13 @@
 //  BGAppDelegate.m
 //  Sudoku
 //
-//  Created by Sarah Gilkinson on 9/11/14.
-//  Copyright (c) 2014 Blauzvern Gilkinson. All rights reserved.
+//  Created on 9/11/14.
+//  Copyright (c) 2014 Blauzvern Kutsko. All rights reserved.
 //
 
-#import "BGAppDelegate.h"
+#import "BKAppDelegate.h"
 
-@implementation BGAppDelegate
+@implementation BKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
