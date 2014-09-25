@@ -59,14 +59,16 @@
     [self.view addSubview:_gridView];
     
     // Constants allow us to shape the numpad
-    CGRect numPadFrame = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 7) + size, size, size * .15);
+    CGRect numPadFrame = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 100) + size, size, size * .15);
     _numPadView = [[BKNumPadView alloc] initWithFrame:numPadFrame];
     
     [self.view addSubview:_numPadView];
     
     //create the control panel frame
-    CGRect controlPanelFrame  = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 2), size, size*.3);
+    CGRect controlPanelFrame  = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 4) + size, size, size*.3);
     _controlPanelView = [[BKControlPanelView alloc] initWithFrame:controlPanelFrame];
+    
+    [self.view addSubview:_controlPanelView];
     
 }
 
