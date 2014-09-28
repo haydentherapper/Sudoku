@@ -95,4 +95,40 @@
     return YES;
 }
 
+- (void)saveYourSelf
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
+    NSString* encoding = @"";
+    
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            int val = _gridCells[r][c];
+            if (val != 0) {
+                encoding = [encoding stringByAppendingString:[NSString stringWithFormat:@"%i", _gridCells[r][c]]];
+            } else {
+                encoding = [encoding stringByAppendingString:@"."];
+            }
+        }
+    }
+    [encoding writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (void)restoreSelf
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
+    NSError* error;
+    NSString* previousState = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:(&error)];
+    
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            unichar character = [previousState characterAtIndex:i*9 + j];
+            if (character == '.') {
+                _gridCells[i][j] = 0;
+            } else {
+                _gridCells[i][j] = character - '0';
+            }
+        }
+    }
+}
+
 @end

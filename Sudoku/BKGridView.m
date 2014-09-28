@@ -64,8 +64,12 @@
 - (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)original
 {
     UIButton* button = [_buttonArray objectAtIndex:9*row + col];
-    [button setTitle:[NSString stringWithFormat:@"%i",value]
-            forState:UIControlStateNormal];
+    if (value != 0) {
+        [button setTitle:[NSString stringWithFormat:@"%i",value]
+                forState:UIControlStateNormal];
+    } else {
+        [button setTitle:@"" forState:UIControlStateNormal];
+    }
     button.userInteractionEnabled = original; // Locks cell if original
     
 }

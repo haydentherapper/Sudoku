@@ -40,15 +40,23 @@
         NSMutableArray *buttonArray = [[NSMutableArray alloc] init];
         _newGameButton     = [UIButton alloc];
         [_newGameButton setTitle:@"New Game"  forState: UIControlStateNormal];
+        [_newGameButton addTarget:self action:@selector(newGameButtonPressed:)
+                 forControlEvents:UIControlEventTouchUpInside];
         
         _modeSwitchButton  = [UIButton alloc];
-        [_modeSwitchButton setTitle:@"Hard Mode"  forState: UIControlStateNormal];
+        [_modeSwitchButton setTitle:@"Easy Mode"  forState: UIControlStateNormal];
+        [_newGameButton addTarget:self action:@selector(switchModesButtonPressed:)
+                 forControlEvents:UIControlEventTouchUpInside];
         
         _saveButton        = [UIButton alloc];
         [_saveButton setTitle:@"Save Game"  forState: UIControlStateNormal];
+        [_saveButton addTarget:self action:@selector(saveButtonPressed:)
+                 forControlEvents:UIControlEventTouchUpInside];
 
         _restoreButton     = [UIButton alloc];
         [_restoreButton setTitle:@"Load Game"  forState: UIControlStateNormal];
+        [_restoreButton addTarget:self action:@selector(restoreButtonPressed:)
+              forControlEvents:UIControlEventTouchUpInside];
 
         _statisticsButton  = [UIButton alloc];
         [_statisticsButton setTitle:@"See Statistics"  forState: UIControlStateNormal];
@@ -68,23 +76,44 @@
                 UIButton* button = [buttonArray objectAtIndex:r + c*3];
                 
                 button = [button initWithFrame:CGRectMake(marginSizeX + (marginSizeX + buttonSizeX)*r, (marginSizeY + buttonSizeY)*c + marginSizeY, buttonSizeX, buttonSizeY)];
+                
                 button.backgroundColor = [UIColor whiteColor];
                 [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
                 [self addSubview:button];
             }
         }
-
-        
-    
-
-        
-        
-        
     }
     return self;
 }
 
+- (IBAction)newGameButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(startNewGame:)]) {
+        [self.delegate startNewGame:sender];
+    }
+}
+
+- (IBAction)switchModesButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(switchModes:)]) {
+        [self.delegate switchModes:sender];
+    }
+}
+
+- (IBAction)saveButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(saveGame:)]) {
+        [self.delegate saveGame:sender];
+    }
+}
+
+- (IBAction)restoreButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(restoreGame:)]) {
+        [self.delegate restoreGame:sender];
+    }
+}
 
 
 @end

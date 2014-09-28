@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BKControlPanelViewDelegate <NSObject>
+@required
+- (void)startNewGame:(id)sender;
+- (void)saveGame:(id)sender;
+- (void)restoreGame:(id)sender;
+- (void)switchModes:(id)sender;
+@end
+
 @interface BKControlPanelView : UIView
+
+@property (weak, nonatomic) id <BKControlPanelViewDelegate> delegate;
 
 @end

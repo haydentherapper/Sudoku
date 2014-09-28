@@ -12,7 +12,7 @@
 #import "BKNumPadView.h"
 #import "BKControlPanelView.h"
 
-@interface BKViewController() <BKGridViewDelegate> {
+@interface BKViewController() <BKGridViewDelegate, BKControlPanelViewDelegate> {
     BKGridView* _gridView;
     BKGridModel* _gridModel;
     BKNumPadView* _numPadView;
@@ -44,14 +44,8 @@
     // Create grid view and populates
     _gridView = [[BKGridView alloc] initWithFrame:gridFrame ofSize:size];
     
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            int value = [_gridModel getValueAtRow:row atCol:col];
-            if (value != 0) {
-                [_gridView setButtonValue:value atRow:row atCol:col canSelect:NO];
-            }
-        }
-    }
+    // Fill all grid cells with nums from gridView
+    [self initGridView];
     
     // Assign gridView's delegate to be the controller
     _gridView.delegate = self;
@@ -67,6 +61,9 @@
     //create the control panel frame
     CGRect controlPanelFrame  = CGRectMake(x, y + round((CGRectGetHeight(frame) - size) / 4) + size, size, size*.3);
     _controlPanelView = [[BKControlPanelView alloc] initWithFrame:controlPanelFrame];
+    
+    // Assign controlPanelView's delegate to be this controller
+    _controlPanelView.delegate = self;
     
     [self.view addSubview:_controlPanelView];
     
@@ -101,6 +98,44 @@
         // Lock all cells
         [_gridView makeAllCellsUnselectable];
     }
+}
+
+- (void)initGridView
+{
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            int value = [_gridModel getValueAtRow:row atCol:col];
+            if (value != 0) {
+                [_gridView setButtonValue:value atRow:row atCol:col canSelect:NO];
+            } else {
+                [_gridView setButtonValue:value atRow:row atCol:col canSelect:YES];
+            }
+        }
+    }
+}
+
+- (void)startNewGame:(id)sender
+{
+    [_gridModel initializeGrid];
+    
+    // Fill all grid cells with nums from gridView
+    [self initGridView];
+}
+
+- (void)saveGame:(id)sender
+{
+    [_gridModel saveYourSelf];
+}
+
+- (void)restoreGame:(id)sender
+{
+    [_gridModel restoreSelf];
+    [self initGridView];
+}
+
+- (void)switchModes:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
