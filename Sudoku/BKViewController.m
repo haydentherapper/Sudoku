@@ -32,7 +32,7 @@
     // Create grid frame
     CGRect frame = self.view.frame;
     CGFloat x = CGRectGetWidth(frame)*.1;
-    CGFloat y = CGRectGetHeight(frame)*.1;
+    CGFloat y = CGRectGetHeight(frame)*.05;
     CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.80;
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
