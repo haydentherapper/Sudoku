@@ -127,14 +127,14 @@
 
 - (void)initGridView
 {
+    //check the initial state of the board
+    NSString* initialState = [_gridModel getInitialState];
+
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) {
             int value = [_gridModel getValueAtRow:row atCol:col];
-            if (value != 0) {
-                [_gridView setButtonValue:value atRow:row atCol:col canSelect:NO];
-            } else {
-                [_gridView setButtonValue:value atRow:row atCol:col canSelect:YES];
-            }
+            BOOL wasInitialValue = ([initialState characterAtIndex:row*9+col] != '.');
+            [_gridView setButtonValue:value atRow:row atCol:col canSelect:!wasInitialValue];
         }
     }
 }

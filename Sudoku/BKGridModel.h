@@ -22,4 +22,6 @@
 - (void)saveYourSelf;
 - (void)restoreSelf;
 
+-(NSString*)getInitialState;
+
 @end

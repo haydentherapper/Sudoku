@@ -11,6 +11,7 @@
 @interface BKGridModel() {
     int _gridCells[9][9];
     NSArray* _allPossibleGrids;
+    NSString* _initialState;
 }
 
 @end
@@ -40,6 +41,8 @@
             }
         }
     }
+    //This will write down the initial state of the grid
+    _initialState = ourGrid;
 }
 
 - (int)getValueAtRow:(int)row atCol:(int)col
@@ -107,7 +110,7 @@
 
 - (void)saveYourSelf
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
+    NSString* path = [[NSBundle mainBundle] pathForResource: @"gameState" ofType:@"txt"];
     NSString* encoding = @"";
     
     for (int r = 0; r < 9; r++) {
@@ -121,12 +124,17 @@
         }
     }
     [encoding writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSString* initialPath = [[NSBundle mainBundle] pathForResource: @"initialState" ofType:@"txt"];
+    [_initialState writeToFile:initialPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)restoreSelf
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
+    NSString* initialPath = [[NSBundle mainBundle] pathForResource:@"initialState" ofType:@"txt"];
     NSError* error;
+    _initialState = [[NSString alloc] initWithContentsOfFile:initialPath encoding:NSUTF8StringEncoding error:(&error)];
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
     NSString* previousState = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:(&error)];
     
     for (int i = 0; i < 9; i++) {
@@ -139,6 +147,11 @@
             }
         }
     }
+}
+
+-(NSString*)getInitialState
+{
+    return _initialState;
 }
 
 @end

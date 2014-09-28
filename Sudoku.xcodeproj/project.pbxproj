@@ -26,6 +26,7 @@
 		5D257C0619CB84B700E47398 /* BKGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D257C0519CB84B700E47398 /* BKGridModel.m */; };
 		5D9FAA9D19D8B45A00E80E8B /* gameState.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5D9FAA9C19D8B45A00E80E8B /* gameState.txt */; };
 		5D9FAA9F19D8B76E00E80E8B /* grid1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5D9FAA9E19D8B76E00E80E8B /* grid1.txt */; };
+		AC56295719D8C97600D09E7A /* initialState.txt in Resources */ = {isa = PBXBuildFile; fileRef = AC56295619D8C97600D09E7A /* initialState.txt */; };
 		D83B153119D4BB65003396BE /* BKControlPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = D83B153019D4BB65003396BE /* BKControlPanelView.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		5D257C0519CB84B700E47398 /* BKGridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKGridModel.m; sourceTree = "<group>"; };
 		5D9FAA9C19D8B45A00E80E8B /* gameState.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gameState.txt; sourceTree = "<group>"; };
 		5D9FAA9E19D8B76E00E80E8B /* grid1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid1.txt; sourceTree = "<group>"; };
+		AC56295619D8C97600D09E7A /* initialState.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = initialState.txt; sourceTree = "<group>"; };
 		D83B152F19D4BB65003396BE /* BKControlPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKControlPanelView.h; sourceTree = "<group>"; };
 		D83B153019D4BB65003396BE /* BKControlPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKControlPanelView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				0A8C221319C2470500483F92 /* main.m */,
 				0A8C221519C2470500483F92 /* Sudoku-Prefix.pch */,
 				5D9FAA9C19D8B45A00E80E8B /* gameState.txt */,
+				AC56295619D8C97600D09E7A /* initialState.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				5D9FAA9F19D8B76E00E80E8B /* grid1.txt in Resources */,
 				0A8C222019C2470500483F92 /* Images.xcassets in Resources */,
 				0A8C221219C2470500483F92 /* InfoPlist.strings in Resources */,
+				AC56295719D8C97600D09E7A /* initialState.txt in Resources */,
 				5D9FAA9D19D8B45A00E80E8B /* gameState.txt in Resources */,
 				0A8C221B19C2470500483F92 /* Main.storyboard in Resources */,
 			);

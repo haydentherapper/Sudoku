@@ -61,16 +61,19 @@
     return self;
 }
 
-- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)original
+- (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)modifiable
 {
     UIButton* button = [_buttonArray objectAtIndex:9*row + col];
+    if (!modifiable) {
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
     if (value != 0) {
         [button setTitle:[NSString stringWithFormat:@"%i",value]
                 forState:UIControlStateNormal];
     } else {
         [button setTitle:@"" forState:UIControlStateNormal];
     }
-    button.userInteractionEnabled = original; // Locks cell if original
+    button.userInteractionEnabled = modifiable; // Locks cell if original
     
 }
 
