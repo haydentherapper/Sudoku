@@ -17,6 +17,7 @@
     BKGridModel* _gridModel;
     BKNumPadView* _numPadView;
     BKControlPanelView* _controlPanelView;
+    BOOL _isHardMode;
 }
 
 @end
@@ -26,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _isHardMode = NO;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -76,27 +79,49 @@
     // Tag is 21 = 2nd row, 1st column (Subtract 1 for array[r][c])
     int row = curButton.tag / 10 - 1;
     int col = curButton.tag % 10 - 1;
-    BOOL wasValidMove = [_gridModel setValue:currentNum atRow:row atCol:col];
-    if (wasValidMove) {
+    if (_isHardMode){
+        [_gridModel setValue:currentNum atRow:row atCol:col];
         [_gridView setButtonValue:currentNum atRow:row atCol:col canSelect:YES];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid move"
-                                                        message:@"Move was illogical"
-                                                        delegate:nil
-                                                        cancelButtonTitle:@"OK"
-                                                        otherButtonTitles:nil];
-        [alert show];
+        BOOL wasValidMove = [_gridModel checkValue:currentNum atRow:row atCol:col];
+        if (wasValidMove) {
+            [_gridModel setValue:currentNum atRow:row atCol:col];
+            [_gridView setButtonValue:currentNum atRow:row atCol:col canSelect:YES];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid move"
+                                                            message:@"Move was illogical"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
+    
+    
     // We have won the game!
     if ([_gridModel isFull]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"#Winning"
-                                                        message:@"You won!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        // Lock all cells
-        [_gridView makeAllCellsUnselectable];
+        if ([_gridModel wonTheGame]){
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"#Winning"
+                                                            message:@"You won!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        
+            [alert show];
+            // Lock all cells
+            [_gridView makeAllCellsUnselectable];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mistakes were made"
+                                                            message:@"Keep trying!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+
+        }
+        
     }
 }
 
@@ -135,6 +160,7 @@
 
 - (void)switchModes:(id)sender
 {
+    _isHardMode = !(_isHardMode);
     
 }
 

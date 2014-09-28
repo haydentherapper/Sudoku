@@ -14,8 +14,10 @@
 - (void)initializeGrid;
 
 - (int)getValueAtRow:(int)row atCol:(int)col;
-- (BOOL)setValue:(int)value atRow:(int)row atCol:(int)col;
+- (BOOL)checkValue:(int)value atRow:(int)row atCol:(int)col;
+- (void)setValue:(int)value atRow:(int)row atCol:(int)col;
 - (BOOL)isFull;
+- (BOOL)wonTheGame;
 
 - (void)saveYourSelf;
 - (void)restoreSelf;

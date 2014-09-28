@@ -45,8 +45,9 @@
         
         _modeSwitchButton  = [UIButton alloc];
         [_modeSwitchButton setTitle:@"Easy Mode"  forState: UIControlStateNormal];
-        [_newGameButton addTarget:self action:@selector(switchModesButtonPressed:)
+        [_modeSwitchButton addTarget:self action:@selector(switchModesButtonPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
+        [_modeSwitchButton setTag: 0]; //initially not set to hard mode
         
         _saveButton        = [UIButton alloc];
         [_saveButton setTitle:@"Save Game"  forState: UIControlStateNormal];
@@ -97,6 +98,13 @@
 - (IBAction)switchModesButtonPressed:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(switchModes:)]) {
+        if (_modeSwitchButton.tag == 0){
+            [_modeSwitchButton setTitle:@"Hard Mode" forState:UIControlStateNormal];
+            _modeSwitchButton.tag = 1;
+        } else {
+            [_modeSwitchButton setTitle:@"Easy Mode" forState:UIControlStateNormal];
+            _modeSwitchButton.tag = 0;
+        }
         [self.delegate switchModes:sender];
     }
 }

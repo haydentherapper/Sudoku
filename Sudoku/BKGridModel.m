@@ -47,25 +47,21 @@
     return _gridCells[row][col];
 }
 
-- (BOOL)setValue:(int)value atRow:(int)row atCol:(int)col
+- (void)setValue:(int)value atRow:(int)row atCol:(int)col
 {
-    // Check if the attempted move is valid
-    BOOL wasValid = [self checkLogicForValue: value atRow:row andCol: col];
-    if (wasValid){
-        _gridCells[row][col] = value;
-    }
-    return wasValid;
+    _gridCells[row][col] = value;
 }
 
-- (BOOL)checkLogicForValue:(int)value atRow:(int)row andCol:(int)col
+
+- (BOOL)checkValue:(int)value atRow:(int)row atCol:(int)col
 {
     for (int i = 0; i < 9; ++i) {
         //check row
-        if (_gridCells[row][i] == value) {
+        if (_gridCells[row][i] == value && i != col) {
             return NO;
         }
         //check column
-        if (_gridCells[i][col] == value) {
+        if (_gridCells[i][col] == value && i != row) {
             return NO;
         }
     }
@@ -74,7 +70,7 @@
     int colIndex = (col/3)*3;
     for (int r = rowIndex; r < rowIndex + 3; ++r){
         for (int c = colIndex; c < colIndex + 3; ++c){
-            if (_gridCells[r][c] == value){
+            if (_gridCells[r][c] == value && r != row && c != col){
                 return NO;
             }
         }
@@ -94,6 +90,20 @@
     }
     return YES;
 }
+
+- (BOOL)wonTheGame
+{
+    for (int r = 0; r<9; r++){
+        for (int c = 0; c<9; c++){
+            int value = _gridCells[r][c];
+            if (![self checkValue:value atRow:r atCol: c]){
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
 
 - (void)saveYourSelf
 {
