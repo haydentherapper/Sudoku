@@ -39,7 +39,7 @@
                 UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x,y,buttonSize,buttonSize)];
                 
                 button.backgroundColor = [UIColor whiteColor];
-                [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
                 
                 // Tag of 21 represents second row, first column
@@ -64,17 +64,47 @@
 - (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)modifiable
 {
     UIButton* button = [_buttonArray objectAtIndex:9*row + col];
-    if (!modifiable) {
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+//    // The cell is an initial cell and should be colored differently
+//    if (!modifiable) {
+//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    }
+//    
+    // Register the button to recognize double taps
+    if (modifiable) {
+        // From StackOverflow on how to recognize long presses
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                                   initWithTarget:self
+                                                   action:@selector(longPress:)];
+        [button addGestureRecognizer:longPress];
+        [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     }
+    
+    // Set the string displayed
     if (value != 0) {
         [button setTitle:[NSString stringWithFormat:@"%i",value]
                 forState:UIControlStateNormal];
     } else {
+        // Used when restoring grid to blank out old grid
         [button setTitle:@"" forState:UIControlStateNormal];
     }
-    button.userInteractionEnabled = modifiable; // Locks cell if original
     
+    button.userInteractionEnabled = modifiable; // Locks cell if original
+}
+
+- (void)longPress:(UILongPressGestureRecognizer*)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        UIButton* button = (UIButton*) gesture.view;
+        [button setTitle:@"" forState:UIControlStateNormal];
+    }
+}
+
+- (void)resetGrid
+{
+    for (UIButton* button in _buttonArray) {
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)buttonPressed:(id)sender

@@ -142,6 +142,7 @@
 - (void)startNewGame:(id)sender
 {
     [_gridModel initializeGrid];
+    [_gridView resetGrid];
     
     // Fill all grid cells with nums from gridView
     [self initGridView];
@@ -155,6 +156,8 @@
 - (void)restoreGame:(id)sender
 {
     [_gridModel restoreSelf];
+    [_gridView resetGrid];
+    
     [self initGridView];
 }
 
