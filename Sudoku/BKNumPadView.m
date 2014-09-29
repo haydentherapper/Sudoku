@@ -29,7 +29,7 @@
         CGFloat frameSizeX = CGRectGetWidth(frame);
         
         // Create the offset for the outer margins
-        CGFloat buttonOffset = .02*frameSizeX;
+        CGFloat buttonOffset = .015*frameSizeX;
         // Create the inner margin size
         CGFloat marginSize = .01*frameSizeX;
         

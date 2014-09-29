@@ -31,7 +31,9 @@
     
     _isHardMode = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor =
+    [UIColor colorWithPatternImage:[self resizeImage:[UIImage imageNamed:@"white spot blue.jpg"] newSize:self.view.frame.size]];
     
     // Create grid frame
     CGRect frame = self.view.frame;
@@ -70,6 +72,28 @@
     _controlPanelView.delegate = self;
     
     [self.view addSubview:_controlPanelView];
+}
+
+- (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+    CGImageRef imageRef = image.CGImage;
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
+    
+    CGContextConcatCTM(context, flipVertical);
+    CGContextDrawImage(context, newRect, imageRef);
+    
+    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    CGImageRelease(newImageRef);
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void)viewWillAppear:(BOOL)animated

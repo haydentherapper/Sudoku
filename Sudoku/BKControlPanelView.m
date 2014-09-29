@@ -42,32 +42,44 @@
         [_newGameButton setTitle:@"New Game"  forState: UIControlStateNormal];
         [_newGameButton addTarget:self action:@selector(newGameButtonPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
+        [_newGameButton setBackgroundImage:[self imageWithColor:[UIColor redColor]]
+                          forState:UIControlStateHighlighted];
         
         _modeSwitchButton  = [UIButton alloc];
         [_modeSwitchButton setTitle:@"Easy Mode"  forState: UIControlStateNormal];
         [_modeSwitchButton addTarget:self action:@selector(switchModesButtonPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
         [_modeSwitchButton setTag: 0]; //initially not set to hard mode
+        [_modeSwitchButton setBackgroundImage:[self imageWithColor:[UIColor orangeColor]]
+                                  forState:UIControlStateHighlighted];
         
         _saveButton        = [UIButton alloc];
         [_saveButton setTitle:@"Save Game"  forState: UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveButtonPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
+        [_saveButton setBackgroundImage:[self imageWithColor:[UIColor yellowColor]]
+                                     forState:UIControlStateHighlighted];
 
         _restoreButton     = [UIButton alloc];
         [_restoreButton setTitle:@"Load Game"  forState: UIControlStateNormal];
         [_restoreButton addTarget:self action:@selector(restoreButtonPressed:)
               forControlEvents:UIControlEventTouchUpInside];
+        [_restoreButton setBackgroundImage:[self imageWithColor:[UIColor greenColor]]
+                               forState:UIControlStateHighlighted];
 
         _statisticsButton  = [UIButton alloc];
         [_statisticsButton setTitle:@"See Statistics"  forState: UIControlStateNormal];
         [_statisticsButton addTarget:self action:@selector(statsButtonPressed:)
                     forControlEvents:UIControlEventTouchUpInside];
+        [_statisticsButton setBackgroundImage:[self imageWithColor:[UIColor blueColor]]
+                                  forState:UIControlStateHighlighted];
 
         _informationButton = [UIButton alloc];
         [_informationButton setTitle:@"Information"  forState: UIControlStateNormal];
         [_informationButton addTarget:self action:@selector(infoButtonPressed:)
                     forControlEvents:UIControlEventTouchUpInside];
+        [_informationButton setBackgroundImage:[self imageWithColor:[UIColor purpleColor]]
+                                     forState:UIControlStateHighlighted];
         
         [buttonArray addObject: _newGameButton];
         [buttonArray addObject: _modeSwitchButton];
@@ -85,7 +97,6 @@
                 button.backgroundColor = [UIColor whiteColor];
                 [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
-                //button.showsTouchWhenHighlighted = YES; ?? FIX ME!!
                 [self addSubview:button];
             }
         }
@@ -140,6 +151,21 @@
     if ([self.delegate respondsToSelector:@selector(displayStats:)]) {
         [self.delegate displayStats:sender];
     }
+}
+
+// This function is from Stack Overflow
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 

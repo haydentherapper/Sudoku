@@ -20,7 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
         
         // Leaving 0.01 each for four lines separating blocks
         CGFloat buttonSize = (size*0.96)/9.0;

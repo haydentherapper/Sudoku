@@ -27,6 +27,7 @@
 		5D35741319D907E700FB350A /* BKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35741219D907E700FB350A /* BKInfoViewController.m */; };
 		5D35741619D90D1400FB350A /* BKInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35741519D90D1400FB350A /* BKInfoView.m */; };
 		5D54B8DB19D9174A00D5538E /* stats.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5D54B8DA19D9174A00D5538E /* stats.txt */; };
+		5D54B8DD19D927D900D5538E /* white spot blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D54B8DC19D927D900D5538E /* white spot blue.jpg */; };
 		5D9FAA9D19D8B45A00E80E8B /* gameState.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5D9FAA9C19D8B45A00E80E8B /* gameState.txt */; };
 		5D9FAA9F19D8B76E00E80E8B /* grid1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5D9FAA9E19D8B76E00E80E8B /* grid1.txt */; };
 		AC56295719D8C97600D09E7A /* initialState.txt in Resources */ = {isa = PBXBuildFile; fileRef = AC56295619D8C97600D09E7A /* initialState.txt */; };
@@ -74,6 +75,7 @@
 		5D35741419D90D1400FB350A /* BKInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKInfoView.h; sourceTree = "<group>"; };
 		5D35741519D90D1400FB350A /* BKInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKInfoView.m; sourceTree = "<group>"; };
 		5D54B8DA19D9174A00D5538E /* stats.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stats.txt; sourceTree = "<group>"; };
+		5D54B8DC19D927D900D5538E /* white spot blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "white spot blue.jpg"; sourceTree = "<group>"; };
 		5D9FAA9C19D8B45A00E80E8B /* gameState.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gameState.txt; sourceTree = "<group>"; };
 		5D9FAA9E19D8B76E00E80E8B /* grid1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid1.txt; sourceTree = "<group>"; };
 		AC56295619D8C97600D09E7A /* initialState.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = initialState.txt; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		0A8C220E19C2470500483F92 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D54B8DC19D927D900D5538E /* white spot blue.jpg */,
 				5D9FAA9E19D8B76E00E80E8B /* grid1.txt */,
 				0A8C220F19C2470500483F92 /* Sudoku-Info.plist */,
 				0A8C221019C2470500483F92 /* InfoPlist.strings */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9FAA9F19D8B76E00E80E8B /* grid1.txt in Resources */,
+				5D54B8DD19D927D900D5538E /* white spot blue.jpg in Resources */,
 				5D54B8DB19D9174A00D5538E /* stats.txt in Resources */,
 				0A8C222019C2470500483F92 /* Images.xcassets in Resources */,
 				0A8C221219C2470500483F92 /* InfoPlist.strings in Resources */,
