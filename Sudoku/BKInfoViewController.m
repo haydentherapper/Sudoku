@@ -65,6 +65,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // Makes the navbar clear so background shows
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning
