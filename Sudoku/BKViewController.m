@@ -11,6 +11,7 @@
 #import "BKGridModel.h"
 #import "BKNumPadView.h"
 #import "BKControlPanelView.h"
+#import "BKInfoViewController.h"
 
 @interface BKViewController() <BKGridViewDelegate, BKControlPanelViewDelegate> {
     BKGridView* _gridView;
@@ -69,7 +70,11 @@
     _controlPanelView.delegate = self;
     
     [self.view addSubview:_controlPanelView];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)buttonWasTapped:(id)sender
@@ -173,6 +178,16 @@
     int row = button.tag / 10 - 1;
     int col = button.tag % 10 - 1;
     [_gridModel setValue:0 atRow:row atCol:col];
+}
+
+- (void)displayInfo:(id)sender
+{
+    [self performSegueWithIdentifier:@"SegueToInfoPanel" sender:self];
+}
+
+- (void)displayStats:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

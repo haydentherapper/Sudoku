@@ -61,9 +61,13 @@
 
         _statisticsButton  = [UIButton alloc];
         [_statisticsButton setTitle:@"See Statistics"  forState: UIControlStateNormal];
+        [_statisticsButton addTarget:self action:@selector(statsButtonPressed:)
+                    forControlEvents:UIControlEventTouchUpInside];
 
         _informationButton = [UIButton alloc];
         [_informationButton setTitle:@"Information"  forState: UIControlStateNormal];
+        [_informationButton addTarget:self action:@selector(infoButtonPressed:)
+                    forControlEvents:UIControlEventTouchUpInside];
         
         [buttonArray addObject: _newGameButton];
         [buttonArray addObject: _modeSwitchButton];
@@ -120,6 +124,20 @@
 {
     if ([self.delegate respondsToSelector:@selector(restoreGame:)]) {
         [self.delegate restoreGame:sender];
+    }
+}
+
+- (IBAction)infoButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(displayInfo:)]) {
+        [self.delegate displayInfo:sender];
+    }
+}
+
+- (IBAction)statsButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(displayStats:)]) {
+        [self.delegate displayStats:sender];
     }
 }
 

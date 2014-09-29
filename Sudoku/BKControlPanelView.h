@@ -14,6 +14,8 @@
 - (void)saveGame:(id)sender;
 - (void)restoreGame:(id)sender;
 - (void)switchModes:(id)sender;
+- (void)displayInfo:(id)sender;
+- (void)displayStats:(id)sender;
 @end
 
 @interface BKControlPanelView : UIView
