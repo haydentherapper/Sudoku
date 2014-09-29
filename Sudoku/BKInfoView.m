@@ -14,7 +14,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CGFloat x = CGRectGetWidth(frame)*.1;
+        CGFloat y = CGRectGetHeight(frame)*.1;
+        CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.80;
+        CGRect textViewFrame = CGRectMake(x, y, size, size);
+        UITextView* uiTextView = [[UITextView alloc]
+                                  initWithFrame:textViewFrame];
+        [uiTextView setFont:[UIFont systemFontOfSize:18.0f]];
+        uiTextView.text = @"Welcome to Sudoku!\n\nIn order to win...";
         
+        [self addSubview:uiTextView];
     }
     return self;
 }

@@ -9,8 +9,8 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BKViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="bTX-MD-LRT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iih-46-MCq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="520" y="244"/>
+            <point key="canvasLocation" x="470" y="276"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="MZ8-uu-1iF">
@@ -32,7 +32,7 @@
                 <viewController id="gaI-fd-tIu" customClass="BKInfoViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iI4-2y-uW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="321"/>
+            <point key="canvasLocation" x="1169" y="158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hXL-Os-Vt8">

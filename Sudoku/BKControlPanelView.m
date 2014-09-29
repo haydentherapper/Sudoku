@@ -85,6 +85,7 @@
                 button.backgroundColor = [UIColor whiteColor];
                 [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
+                //button.showsTouchWhenHighlighted = YES; ?? FIX ME!!
                 [self addSubview:button];
             }
         }

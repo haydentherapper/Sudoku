@@ -105,8 +105,15 @@
     
     // We have won the game!
     if ([_gridModel isFull]) {
-        if ([_gridModel wonTheGame]){
-        
+        if ([_gridModel wonTheGame]) {
+            NSString* statsPath = [[NSBundle mainBundle] pathForResource:@"stats" ofType:@"txt"];
+            NSError* error;
+            NSString* stats = [[NSString alloc] initWithContentsOfFile:statsPath
+                                                              encoding:NSUTF8StringEncoding error:(&error)];
+            int score = [stats intValue] + 1;
+            [[NSString stringWithFormat:@"%i", score]
+                    writeToFile:statsPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"#Winning"
                                                             message:@"You won!"
                                                            delegate:nil
@@ -187,7 +194,23 @@
 
 - (void)displayStats:(id)sender
 {
+    NSString* statsPath = [[NSBundle mainBundle] pathForResource:@"stats" ofType:@"txt"];
+    NSError* error;
+    NSString* stats = [[NSString alloc] initWithContentsOfFile:statsPath encoding:NSUTF8StringEncoding error:(&error)];
     
+    NSString* displayString;
+    if ([stats isEqualToString:@"1"]) {
+        displayString = [NSString stringWithFormat:@"You've won %@ game!", stats];
+    } else {
+        displayString = [NSString stringWithFormat:@"You've won %@ games!", stats];
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game statistics"
+                                                    message:displayString
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
