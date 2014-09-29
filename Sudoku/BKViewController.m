@@ -119,7 +119,6 @@
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-        
             [alert show];
             // Lock all cells
             [_gridView makeAllCellsUnselectable];
@@ -129,9 +128,7 @@
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-            
             [alert show];
-
         }
         
     }

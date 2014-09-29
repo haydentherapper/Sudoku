@@ -124,6 +124,7 @@
         }
     }
     [encoding writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
     NSString* initialPath = [[NSBundle mainBundle] pathForResource: @"initialState" ofType:@"txt"];
     [_initialState writeToFile:initialPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
@@ -132,18 +133,29 @@
 {
     NSString* initialPath = [[NSBundle mainBundle] pathForResource:@"initialState" ofType:@"txt"];
     NSError* error;
-    _initialState = [[NSString alloc] initWithContentsOfFile:initialPath encoding:NSUTF8StringEncoding error:(&error)];
+    NSString* initialState = [[NSString alloc] initWithContentsOfFile:initialPath
+                                                             encoding:NSUTF8StringEncoding error:(&error)];
+    if ([initialState isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No saved state"
+                                                        message:@"You've never saved a game! Hit the save button to do so!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        _initialState = initialState;
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
-    NSString* previousState = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:(&error)];
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
+        NSString* previousState = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:(&error)];
     
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            unichar character = [previousState characterAtIndex:i*9 + j];
-            if (character == '.') {
-                _gridCells[i][j] = 0;
-            } else {
-                _gridCells[i][j] = character - '0';
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                unichar character = [previousState characterAtIndex:i*9 + j];
+                if (character == '.') {
+                    _gridCells[i][j] = 0;
+                } else {
+                    _gridCells[i][j] = character - '0';
+                }
             }
         }
     }
