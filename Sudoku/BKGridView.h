@@ -11,6 +11,7 @@
 @protocol BKGridViewDelegate <NSObject>
 @required
 - (void)buttonWasTapped:(id)sender;
+- (void)longPressForErase:(UILongPressGestureRecognizer*)sender;
 @end
 
 @interface BKGridView : UIView

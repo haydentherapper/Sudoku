@@ -94,9 +94,12 @@
 
 - (void)longPress:(UILongPressGestureRecognizer*)gesture
 {
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        UIButton* button = (UIButton*) gesture.view;
-        [button setTitle:@"" forState:UIControlStateNormal];
+    if ([self.delegate respondsToSelector:@selector(longPressForErase:)]) {
+        if (gesture.state == UIGestureRecognizerStateEnded) {
+            UIButton* button = (UIButton*) gesture.view;
+            [button setTitle:@"" forState:UIControlStateNormal];
+        }
+        [self.delegate longPressForErase:gesture];
     }
 }
 

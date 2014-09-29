@@ -167,6 +167,14 @@
     
 }
 
+- (void)longPressForErase:(UILongPressGestureRecognizer*)sender
+{
+    UIButton* button = (UIButton*) sender.view;
+    int row = button.tag / 10 - 1;
+    int col = button.tag % 10 - 1;
+    [_gridModel setValue:0 atRow:row atCol:col];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
