@@ -72,8 +72,6 @@
     XCTAssertTrue([_gridModel checkValue:4 atRow:6 atCol:2], @"Make sure we can replace values");
     [_gridModel setValue:4 atRow:6 atCol:2];
     XCTAssertTrue([_gridModel getValueAtRow:6 atCol:2] == 4, @"Checking value at r7:c3 with new value");
-    
-   
 }
 
 -(void)testEndGame
