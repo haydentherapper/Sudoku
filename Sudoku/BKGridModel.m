@@ -18,6 +18,7 @@
 
 @implementation BKGridModel
 
+// Called once to read all grids from a text file and save them
 - (void)parseGrids
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"grid1" ofType:@"txt"];
@@ -28,6 +29,7 @@
 
 - (void)initializeGrid
 {
+    // Pick a random grid for this round
     int randomNum = arc4random_uniform([_allPossibleGrids count]);
     NSString* ourGrid = [_allPossibleGrids objectAtIndex:randomNum];
 
@@ -55,12 +57,11 @@
     _gridCells[row][col] = value;
 }
 
-
 - (BOOL)checkValue:(int)value atRow:(int)row atCol:(int)col
 {
     for (int i = 0; i < 9; ++i) {
         //check row
-        if (_gridCells[row][i] == value && i != col) {
+        if (_gridCells[row][i] == value && i != col) { // != for not including current cell
             return NO;
         }
         //check column
@@ -96,10 +97,11 @@
 
 - (BOOL)wonTheGame
 {
+    // Check every cell logic
     for (int r = 0; r<9; r++){
         for (int c = 0; c<9; c++){
             int value = _gridCells[r][c];
-            if (![self checkValue:value atRow:r atCol: c]){
+            if (![self checkValue:value atRow:r atCol:c]){
                 return NO;
             }
         }
@@ -113,6 +115,7 @@
     NSString* path = [[NSBundle mainBundle] pathForResource: @"gameState" ofType:@"txt"];
     NSString* encoding = @"";
     
+    // Add each cell to a string to be saved as the game state
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             int val = _gridCells[r][c];
@@ -123,9 +126,11 @@
             }
         }
     }
+    // Write the game state
     [encoding writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
     NSString* initialPath = [[NSBundle mainBundle] pathForResource: @"initialState" ofType:@"txt"];
+    // Write the initial state to know which buttons need to be original buttons
     [_initialState writeToFile:initialPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
@@ -135,6 +140,7 @@
     NSError* error;
     NSString* initialState = [[NSString alloc] initWithContentsOfFile:initialPath
                                                              encoding:NSUTF8StringEncoding error:(&error)];
+    // Checks if a game has ever been saved
     if ([initialState isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No saved state"
                                                         message:@"You've never saved a game! Hit the save button to do so!"
@@ -143,11 +149,13 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
+        // Restores initial state
         _initialState = initialState;
     
         NSString* path = [[NSBundle mainBundle] pathForResource:@"gameState" ofType:@"txt"];
         NSString* previousState = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:(&error)];
     
+        // Restore all characters
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 unichar character = [previousState characterAtIndex:i*9 + j];

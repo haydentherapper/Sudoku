@@ -29,11 +29,12 @@
 {
     [super viewDidLoad];
     
+    // Initially users start on easy mode
     _isHardMode = NO;
     
-    //self.view.backgroundColor = [UIColor whiteColor];
-    self.view.backgroundColor =
-    [UIColor colorWithPatternImage:[self resizeImage:[UIImage imageNamed:@"white spot blue.jpg"] newSize:self.view.frame.size]];
+    // Set background to custom image (Function from Stackoverflow)
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[self
+                                                                resizeImage:[UIImage imageNamed:@"white spot blue.jpg"] newSize:self.view.frame.size]];
     
     // Create grid frame
     CGRect frame = self.view.frame;
@@ -43,6 +44,7 @@
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
+    // Init gride model and populate model
     _gridModel = [BKGridModel alloc];
     [_gridModel parseGrids];
     [_gridModel initializeGrid];
@@ -74,6 +76,7 @@
     [self.view addSubview:_controlPanelView];
 }
 
+// From Stackoverflow
 - (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
     CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
     CGImageRef imageRef = image.CGImage;
@@ -96,8 +99,10 @@
     return newImage;
 }
 
+// Action to do before view appears
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Hide navigation bar
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -108,10 +113,13 @@
     // Tag is 21 = 2nd row, 1st column (Subtract 1 for array[r][c])
     int row = curButton.tag / 10 - 1;
     int col = curButton.tag % 10 - 1;
+    
+    // If the user is on hard mode, simply set the selected cell...
     if (_isHardMode){
         [_gridModel setValue:currentNum atRow:row atCol:col];
         [_gridView setButtonValue:currentNum atRow:row atCol:col canSelect:YES];
     } else {
+        // ...else, perform logic checks
         BOOL wasValidMove = [_gridModel checkValue:currentNum atRow:row atCol:col];
         if (wasValidMove) {
             [_gridModel setValue:currentNum atRow:row atCol:col];
@@ -126,9 +134,9 @@
         }
     }
     
-    
-    // We have won the game!
+    // If the board is full, check if we've won...
     if ([_gridModel isFull]) {
+        // We've won!
         if ([_gridModel wonTheGame]) {
             NSString* statsPath = [[NSBundle mainBundle] pathForResource:@"stats" ofType:@"txt"];
             NSError* error;
@@ -167,6 +175,7 @@
         for (int col = 0; col < 9; col++) {
             int value = [_gridModel getValueAtRow:row atCol:col];
             BOOL wasInitialValue = ([initialState characterAtIndex:row*9+col] != '.');
+            // Set cell to be selectable if it was not an initial value
             [_gridView setButtonValue:value atRow:row atCol:col canSelect:!wasInitialValue];
         }
     }
@@ -174,6 +183,7 @@
 
 - (void)startNewGame:(id)sender
 {
+    // Init the model and reset the view colors
     [_gridModel initializeGrid];
     [_gridView resetGrid];
     
@@ -188,9 +198,11 @@
 
 - (void)restoreGame:(id)sender
 {
+    // Restore save file
     [_gridModel restoreSelf];
     [_gridView resetGrid];
-    
+
+    // Fill all grid cells with nums from gridView
     [self initGridView];
 }
 
@@ -205,11 +217,12 @@
     UIButton* button = (UIButton*) sender.view;
     int row = button.tag / 10 - 1;
     int col = button.tag % 10 - 1;
-    [_gridModel setValue:0 atRow:row atCol:col];
+    [_gridModel setValue:0 atRow:row atCol:col]; // Erases selected number
 }
 
 - (void)displayInfo:(id)sender
 {
+    // Performs a segue between the current ViewController and the InfoViewController
     [self performSegueWithIdentifier:@"SegueToInfoPanel" sender:self];
 }
 

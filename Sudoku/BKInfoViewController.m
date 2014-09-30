@@ -21,10 +21,11 @@
 {
     [super viewDidLoad];
 
+    // set background to custom image (Function call from Stackoverflow)
     self.view.backgroundColor = [UIColor colorWithPatternImage:[self
                                                                 resizeImage:[UIImage imageNamed:@"white spot blue.jpg"]
                                                                 newSize:self.view.frame.size]];
-    
+    // Set up frame dimensions
     CGRect frame = self.view.frame;
     CGFloat x = CGRectGetWidth(frame)*.1;
     CGFloat y = CGRectGetHeight(frame)*.1;
@@ -32,7 +33,7 @@
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
-    // Create grid view and populates
+    // Create info panel
     _infoView = [[BKInfoView alloc] initWithFrame:gridFrame];
     
     [self.view addSubview:_infoView];
@@ -62,11 +63,14 @@
     return newImage;
 }
 
+
+// Actions to do before view loads
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Create the navigation bar
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    // Makes the navbar clear so background shows
+    // Makes the navbar clear so background is displayed
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
 }

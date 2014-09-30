@@ -64,13 +64,8 @@
 - (void)setButtonValue:(int)value atRow:(int)row atCol:(int)col canSelect:(BOOL)modifiable
 {
     UIButton* button = [_buttonArray objectAtIndex:9*row + col];
-    
-//    // The cell is an initial cell and should be colored differently
-//    if (!modifiable) {
-//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    }
-//    
-    // Register the button to recognize double taps
+
+    // If the button was not an initial value...
     if (modifiable) {
         // From StackOverflow on how to recognize long presses
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
@@ -92,19 +87,21 @@
     button.userInteractionEnabled = modifiable; // Locks cell if original
 }
 
+// Help from Stackoverflow
 - (void)longPress:(UILongPressGestureRecognizer*)gesture
 {
     if ([self.delegate respondsToSelector:@selector(longPressForErase:)]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             UIButton* button = (UIButton*) gesture.view;
-            [button setTitle:@"" forState:UIControlStateNormal];
+            [button setTitle:@"" forState:UIControlStateNormal]; // Erase current value
         }
-        [self.delegate longPressForErase:gesture];
+        [self.delegate longPressForErase:gesture]; // Call to gridModel to erase in model too
     }
 }
 
 - (void)resetGrid
 {
+    // Used to reset colors on new game
     for (UIButton* button in _buttonArray) {
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
@@ -119,6 +116,7 @@
 
 -(void)makeAllCellsUnselectable
 {
+    // Used in endgame to lock grid
     for (UIButton* button in _buttonArray) {
         button.userInteractionEnabled = NO;
     }

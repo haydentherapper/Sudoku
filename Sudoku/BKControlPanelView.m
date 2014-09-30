@@ -2,7 +2,7 @@
 //  BKControlPanelView.m
 //  Sudoku
 //
-//  Created by HMC Guest on 9/25/14.
+//  Created by Josh Kutsko on 9/25/14.
 //  Copyright (c) 2014 BlauzvernKutsko. All rights reserved.
 //
 
@@ -37,6 +37,7 @@
         CGFloat marginSizeY = frameSizeY*.03;
         
         //Create the six buttons and place them six in an array
+        // Each button gets its own title, target, and background image color
         NSMutableArray *buttonArray = [[NSMutableArray alloc] init];
         _newGameButton     = [UIButton alloc];
         [_newGameButton setTitle:@"New Game"  forState: UIControlStateNormal];
@@ -49,7 +50,7 @@
         [_modeSwitchButton setTitle:@"Easy Mode"  forState: UIControlStateNormal];
         [_modeSwitchButton addTarget:self action:@selector(switchModesButtonPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
-        [_modeSwitchButton setTag: 0]; //initially not set to hard mode
+        [_modeSwitchButton setTag: 0]; // Initially not set to hard mode
         [_modeSwitchButton setBackgroundImage:[self imageWithColor:[UIColor orangeColor]]
                                   forState:UIControlStateHighlighted];
         
@@ -88,6 +89,7 @@
         [buttonArray addObject: _statisticsButton];
         [buttonArray addObject: _informationButton];
         
+        // Populate the view with above buttons
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 2; c++) {
                 UIButton* button = [buttonArray objectAtIndex:r + c*3];
@@ -114,6 +116,7 @@
 - (IBAction)switchModesButtonPressed:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(switchModes:)]) {
+        // ModeSwitch button's tag saves current mode
         if (_modeSwitchButton.tag == 0){
             [_modeSwitchButton setTitle:@"Hard Mode" forState:UIControlStateNormal];
             _modeSwitchButton.tag = 1;
