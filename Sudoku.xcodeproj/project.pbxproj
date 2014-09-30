@@ -207,7 +207,6 @@
 				0A8C220019C2470500483F92 /* Sources */,
 				0A8C220119C2470500483F92 /* Frameworks */,
 				0A8C220219C2470500483F92 /* Resources */,
-				AC9D236819DA22E400CD7FDB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -295,22 +294,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AC9D236819DA22E400CD7FDB /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = XcodeCoverage/exportenv.sh;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A8C220019C2470500483F92 /* Sources */ = {
